@@ -5,6 +5,7 @@ from tkinter import ttk, filedialog, messagebox
 from datetime import datetime
 import threading
 import psutil
+import locale
 
 # Dicionário de traduções
 TRANSLATIONS = {
@@ -38,7 +39,8 @@ TRANSLATIONS = {
         "success_message": "Mod instalado com sucesso!",
         "error_title": "Erro",
         "error_message": "Erro durante a instalação:\n{}",
-        "select_exe": "1. Abra a pasta do Steam.\n2. Navegue até: steamapps\\common\\Fistful of Frags\\sdk.\n3. Selecione o arquivo \"hl2.exe\".",
+        "select_folder": "Localize a pasta de instalação do Fistful of Frags.\n1. Navegue até: steamapps\\common\\Fistful of Frags\\sdk.\n2. Selecione o arquivo \"hl2.exe\".",
+        "select_exe": "Selecione o arquivo hl2.exe na pasta: steamapps\\common\\Fistful of Frags\\sdk.",
         "language_label": "Idioma",
     },
     "English": {
@@ -71,7 +73,8 @@ TRANSLATIONS = {
         "success_message": "Mod installed successfully!",
         "error_title": "Error",
         "error_message": "Error during installation:\n{}",
-        "select_exe": "Select hl2.exe file",
+        "select_folder": "Select hl2.exe file",
+        "select_exe": "Selecione o arquivo hl2.exe na pasta: steamapps\\common\\Fistful of Frags\\sdk.",
         "language_label": "Language",
     },
     "Français": {
@@ -104,7 +107,8 @@ TRANSLATIONS = {
         "success_message": "Mod installé avec succès!",
         "error_title": "Erreur",
         "error_message": "Erreur lors de l'installation:\n{}",
-        "select_exe": "Sélectionnez le fichier hl2.exe",
+        "select_folder": "Sélectionnez le fichier hl2.exe",
+        "select_exe": "Selecione o arquivo hl2.exe na pasta: steamapps\\common\\Fistful of Frags\\sdk.",
         "language_label": "Langue",
     },
     "Español": {
@@ -137,10 +141,45 @@ TRANSLATIONS = {
         "success_message": "¡Mod instalado con éxito!",
         "error_title": "Error",
         "error_message": "Error durante la instalación:\n{}",
-        "select_exe": "Seleccione el archivo hl2.exe",
+        "select_folder": "Seleccione el archivo hl2.exe",
+        "select_exe": "Selecione o arquivo hl2.exe na pasta: steamapps\\common\\Fistful of Frags\\sdk.",
         "language_label": "Idioma",
     }
 }
+
+# Mapeamento de códigos de idioma do sistema para idiomas suportados
+LANGUAGE_MAPPING = {
+    'pt': 'Português',
+    'pt_BR': 'Português',
+    'pt_PT': 'Português',
+    'en': 'English',
+    'fr': 'Français',
+    'es': 'Español'
+}
+
+
+def get_system_language():
+    """
+    Detecta o idioma do sistema e retorna o idioma correspondente suportado pelo aplicativo.
+    Se o idioma do sistema não for suportado, retorna 'English' como padrão.
+    """
+    try:
+        # Configura o locale para o padrão do sistema
+        locale.setlocale(locale.LC_ALL, '')
+        # Obtém o código do idioma atual
+        system_locale = locale.getlocale()[0]
+
+        if system_locale:
+            # Tenta primeiro o código completo (ex: pt_BR)
+            if system_locale in LANGUAGE_MAPPING:
+                return LANGUAGE_MAPPING[system_locale]
+            # Tenta o código base (ex: pt)
+            base_locale = system_locale.split('_')[0]
+            if base_locale in LANGUAGE_MAPPING:
+                return LANGUAGE_MAPPING[base_locale]
+    except:
+        pass
+    return 'English'  # Idioma padrão caso não encontre correspondência
 
 
 def is_game_running():
@@ -166,7 +205,7 @@ class InstallerGUI:
         self.header_label = None
         self.language_var = None
         self.root = tk.Tk()
-        self.current_language = "English"
+        self.current_language = get_system_language()
         self.setup_window()
 
         # Configurações do instalador
@@ -220,18 +259,18 @@ class InstallerGUI:
         )
         self.header_label.pack(pady=(0, 20))
 
+        # Frame para botões
+        button_frame = ttk.Frame(main_frame)
+        button_frame.pack(pady=20)
+
         # Barra de progresso
         self.progress = ttk.Progressbar(
             main_frame,
             orient="horizontal",
-            length=500,
+            length=400,
             mode="determinate"
         )
         self.progress.pack(pady=20)
-
-        # Frame para botões
-        button_frame = ttk.Frame(main_frame)
-        button_frame.pack(pady=20)
 
         # Botões
         self.install_button = ttk.Button(
@@ -310,7 +349,7 @@ class InstallerGUI:
             messagebox.showwarning("", TRANSLATIONS[self.current_language]["game_running"])
             return
 
-        messagebox.showinfo("", TRANSLATIONS[self.current_language]["select_exe"])
+        messagebox.showinfo("", TRANSLATIONS[self.current_language]["select_folder"])
         filepath = filedialog.askopenfilename(
             title=TRANSLATIONS[self.current_language]["select_exe"],
             filetypes=[("Executável", "*.exe")]
