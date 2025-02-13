@@ -170,7 +170,7 @@ class InstallerGUI:
         self.setup_window()
 
         # Configurações do instalador
-        self.default_game_path = r"D:\Program Files (x86)\Steam\steamapps\common\Fistful of Frags"
+        self.default_game_path = r"C:\Program Files (x86)\Steam\steamapps\common\Fistful of Frags"
         self.hl2_exe_path = os.path.join(self.default_game_path, "sdk", "hl2.exe")
         self.client_dll_path = os.path.join(self.default_game_path, "fof", "bin", "client.dll")
         self.mod_dll_path = "mod_client.dll"
