@@ -265,7 +265,7 @@ class InstallerGUI:
         self.log_label = ttk.Label(log_frame, text=TRANSLATIONS[self.current_language]["log_title"])
         self.log_label.pack(anchor=tk.W)
 
-        # font size
+        # log font size
         self.log_text = tk.Text(log_frame, height=8, width=100, font=("Helvetica", 10))
         self.log_text.pack(pady=5)
 
