@@ -120,6 +120,33 @@ TRANSLATIONS = {
         "select_folder": "Seleccione el archivo hl2.exe",
         "select_exe": "Selecione o arquivo hl2.exe na pasta: steamapps\\common\\Fistful of Frags\\sdk.",
         "language_label": "Idioma",
+    },
+    "Русский": {
+        "game_running": "Пожалуйста, закройте Fistful of Frags перед продолжением",
+        "restore_success": "Оригинальный файл успешно восстановлен!",
+        "restore_button": "Восстановить Оригинал",
+        "window_title": "Установщик Мода - Fistful of Frags",
+        "header": "Установщик Мода - Fistful of Frags",
+        "install_button": "Установить Мод",
+        "browse_button": "Выбрать Местоположение",
+        "log_title": "Журнал установки:",
+        "game_found_default": "Игра найдена в стандартном местоположении",
+        "game_not_found": "Игра не найдена в стандартном местоположении",
+        "new_location": "Новое местоположение игры: {}",
+        "invalid_selection": "Неверный или отмененный выбор",
+        "mod_not_found": "Файл мода не найден",
+        "mod_verified": "Файл мода проверен",
+        "original_not_found": "Оригинальный client.dll не найден",
+        "original_found": "Оригинальный client.dll найден",
+        "backup_created": "Резервная копия создана: {}",
+        "install_success": "Мод успешно установлен!",
+        "success_title": "Успех",
+        "success_message": "Мод успешно установлен!",
+        "error_title": "Ошибка",
+        "error_message": "Ошибка во время установки:\n{}",
+        "select_folder": "Выберите файл hl2.exe",
+        "select_exe": "Выберите файл hl2.exe в папке: steamapps\\common\\Fistful of Frags\\sdk.",
+        "language_label": "Язык",
     }
 }
 
@@ -130,7 +157,8 @@ LANGUAGE_MAPPING = {
     'pt_PT': 'Português',
     'en': 'English',
     'fr': 'Français',
-    'es': 'Español'
+    'es': 'Español',
+    'ru': 'Русский'
 }
 
 
@@ -186,7 +214,7 @@ class InstallerGUI:
         self.setup_window()
 
         # Configurações do instalador
-        self.default_game_path = r"C:\Program Files (x86)\Steam\steamapps\common\Fistful of Frags"
+        self.default_game_path = r"D:\Program Files (x86)\Steam\steamapps\common\Fistful of Frags"
         self.hl2_exe_path = os.path.join(self.default_game_path, "sdk", "hl2.exe")
         self.client_dll_path = os.path.join(self.default_game_path, "fof", "bin", "client.dll")
         self.mod_dll_path = "mod_client.dll"
@@ -250,7 +278,7 @@ class InstallerGUI:
                                    textvariable=self.language_var,
                                    width=10,
                                    state="readonly")  # Adicionado state="readonly"
-        language_menu['values'] = ['English', 'Português', 'Français', 'Español']
+        language_menu['values'] = ['English', 'Português', 'Français', 'Español', 'Русский']
         language_menu.pack(side=tk.TOP, padx=5)  # Changed from BOTTOM to TOP
         language_menu.bind('<<ComboboxSelected>>', self.change_language)
 
