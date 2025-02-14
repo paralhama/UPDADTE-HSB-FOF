@@ -6,6 +6,10 @@ from datetime import datetime
 import threading
 import psutil
 import locale
+import ctypes
+
+# Define um ID único para o programa, evitando o ícone genérico do Python
+ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("meu.programa.fof")
 
 # Dicionário de traduções
 TRANSLATIONS = {
@@ -222,6 +226,7 @@ class InstallerGUI:
         self.root.title(TRANSLATIONS[self.current_language]["window_title"])
         self.root.resizable(False, False)
         self.root.iconbitmap("fof.ico")
+
 
     def setup_gui(self):
         style = ttk.Style()
