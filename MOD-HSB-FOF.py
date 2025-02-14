@@ -11,30 +11,23 @@ import locale
 TRANSLATIONS = {
     "Português": {
         "game_running": "Feche o Fistful of Frags antes de continuar",
-        "select_backup": "Selecione o backup para restaurar",
         "restore_success": "Arquivo original restaurado com sucesso!",
-        "no_backups": "Nenhum backup encontrado para restaurar",
         "restore_button": "Restaurar Original",
         "window_title": "Instalador do Mod - Fistful of Frags",
         "header": "Instalador do Mod - Fistful of Frags",
-        "checking_install": "Verificando instalação...",
-        "game_found": "Jogo encontrado. Pronto para instalar.",
-        "select_location": "Selecione a localização do jogo",
         "install_button": "Instalar Mod",
         "browse_button": "Selecionar Local",
         "log_title": "Log de instalação:",
         "game_found_default": "Jogo encontrado no local padrão",
         "game_not_found": "Jogo não encontrado no local padrão",
-        "new_location": "Novo local do jogo: {}",
+        "new_location": "Jogo localizado: {}",
         "invalid_selection": "Seleção inválida ou cancelada",
-        "checking_files": "Verificando arquivos...",
         "mod_not_found": "Arquivo do mod não encontrado",
         "mod_verified": "Arquivo do mod verificado",
         "original_not_found": "client.dll original não encontrado",
         "original_found": "client.dll original encontrado",
         "backup_created": "Backup criado: {}",
         "install_success": "Mod instalado com sucesso!",
-        "install_complete": "Instalação concluída com sucesso!",
         "success_title": "Sucesso",
         "success_message": "Mod instalado com sucesso!",
         "error_title": "Erro",
@@ -45,15 +38,10 @@ TRANSLATIONS = {
     },
     "English": {
         "game_running": "Please close Fistful of Frags before continuing",
-        "select_backup": "Select backup to restore",
         "restore_success": "Original file restored successfully!",
-        "no_backups": "No backups found to restore",
         "restore_button": "Restore Original",
         "window_title": "Mod Installer - Fistful of Frags",
         "header": "Mod Installer - Fistful of Frags",
-        "checking_install": "Checking installation...",
-        "game_found": "Game found. Ready to install.",
-        "select_location": "Select game location",
         "install_button": "Install Mod",
         "browse_button": "Browse Location",
         "log_title": "Installation log:",
@@ -61,14 +49,12 @@ TRANSLATIONS = {
         "game_not_found": "Game not found in default location",
         "new_location": "New game location: {}",
         "invalid_selection": "Invalid or canceled selection",
-        "checking_files": "Checking files...",
         "mod_not_found": "Mod file not found",
         "mod_verified": "Mod file verified",
         "original_not_found": "Original client.dll not found",
         "original_found": "Original client.dll found",
         "backup_created": "Backup created: {}",
         "install_success": "Mod installed successfully!",
-        "install_complete": "Installation completed successfully!",
         "success_title": "Success",
         "success_message": "Mod installed successfully!",
         "error_title": "Error",
@@ -79,15 +65,10 @@ TRANSLATIONS = {
     },
     "Français": {
         "game_running": "Veuillez fermer Fistful of Frags avant de continuer",
-        "select_backup": "Sélectionnez la sauvegarde",
         "restore_success": "Fichier original restauré avec succès!",
-        "no_backups": "Aucune sauvegarde trouvée à restaurer",
         "restore_button": "Restaurer Original",
         "window_title": "Installateur de Mod - Fistful of Frags",
         "header": "Installateur de Mod - Fistful of Frags",
-        "checking_install": "Vérification de l'installation...",
-        "game_found": "Jeu trouvé. Prêt à installer.",
-        "select_location": "Sélectionnez l'emplacement du jeu",
         "install_button": "Installer le Mod",
         "browse_button": "Parcourir",
         "log_title": "Journal d'installation:",
@@ -95,14 +76,12 @@ TRANSLATIONS = {
         "game_not_found": "Jeu non trouvé dans l'emplacement par défaut",
         "new_location": "Nouvel emplacement du jeu: {}",
         "invalid_selection": "Sélection invalide ou annulée",
-        "checking_files": "Vérification des fichiers...",
         "mod_not_found": "Fichier mod non trouvé",
         "mod_verified": "Fichier mod vérifié",
         "original_not_found": "client.dll original non trouvé",
         "original_found": "client.dll original trouvé",
         "backup_created": "Sauvegarde créée: {}",
         "install_success": "Mod installé avec succès!",
-        "install_complete": "Installation terminée avec succès!",
         "success_title": "Succès",
         "success_message": "Mod installé avec succès!",
         "error_title": "Erreur",
@@ -113,15 +92,10 @@ TRANSLATIONS = {
     },
     "Español": {
         "game_running": "Por favor, cierre Fistful of Frags antes de continuar",
-        "select_backup": "Seleccione la copia de seguridad",
         "restore_success": "¡Archivo original restaurado con éxito!",
-        "no_backups": "No se encontraron copias de seguridad",
         "restore_button": "Restaurar Original",
         "window_title": "Instalador de Mod - Fistful of Frags",
         "header": "Instalador de Mod - Fistful of Frags",
-        "checking_install": "Verificando instalación...",
-        "game_found": "Juego encontrado. Listo para instalar.",
-        "select_location": "Seleccione la ubicación del juego",
         "install_button": "Instalar Mod",
         "browse_button": "Seleccionar Ubicación",
         "log_title": "Registro de instalación:",
@@ -129,14 +103,12 @@ TRANSLATIONS = {
         "game_not_found": "Juego no encontrado en la ubicación predeterminada",
         "new_location": "Nueva ubicación del juego: {}",
         "invalid_selection": "Selección inválida o cancelada",
-        "checking_files": "Verificando archivos...",
         "mod_not_found": "Archivo mod no encontrado",
         "mod_verified": "Archivo mod verificado",
         "original_not_found": "client.dll original no encontrado",
         "original_found": "client.dll original encontrado",
         "backup_created": "Copia de seguridad creada: {}",
         "install_success": "¡Mod instalado con éxito!",
-        "install_complete": "¡Instalación completada con éxito!",
         "success_title": "Éxito",
         "success_message": "¡Mod instalado con éxito!",
         "error_title": "Error",
@@ -195,6 +167,7 @@ def is_game_running():
 
 class InstallerGUI:
     def __init__(self):
+        self.language_label = None
         self.backup_path = None
         self.log_text = None
         self.log_label = None
@@ -215,11 +188,33 @@ class InstallerGUI:
         self.mod_dll_path = "mod_client.dll"
 
         self.setup_gui()
+        self.check_backup_status()
+
+    def check_backup_status(self):
+        """Verifica se existe backup e atualiza o estado do botão restore"""
+        backup_dir = os.path.dirname(self.client_dll_path)
+        backup_path = os.path.join(backup_dir, "client.dll.backup")
+
+        if os.path.exists(backup_path):
+            self.restore_button.config(state=tk.NORMAL)
+        else:
+            self.restore_button.config(state=tk.DISABLED)
+
+    def verify_initial_installation(self):
+        if os.path.exists(self.hl2_exe_path):
+            self.log(TRANSLATIONS[self.current_language]["game_found_default"])
+            self.install_button.config(state=tk.NORMAL)
+        else:
+            self.log(TRANSLATIONS[self.current_language]["game_not_found"])
+            self.install_button.config(state=tk.DISABLED)
+
+        # Verifica o status do backup após verificar a instalação
+        self.check_backup_status()
 
     def setup_window(self):
         screen_width = self.root.winfo_screenwidth()
         screen_height = self.root.winfo_screenheight()
-        window_width = 600
+        window_width = 700
         window_height = 400
         position_x = (screen_width - window_width) // 2
         position_y = (screen_height - window_height) // 2
@@ -243,12 +238,15 @@ class InstallerGUI:
         lang_frame.pack(fill=tk.X, pady=(0, 10))
 
         self.language_label = ttk.Label(lang_frame, text=TRANSLATIONS[self.current_language]["language_label"])
-        self.language_label.pack(side=tk.LEFT)
+        self.language_label.pack(side=tk.TOP)  # Changed from BOTTOM to TOP
 
         self.language_var = tk.StringVar(value=self.current_language)
-        language_menu = ttk.Combobox(lang_frame, textvariable=self.language_var, width=10)
+        language_menu = ttk.Combobox(lang_frame,
+                                   textvariable=self.language_var,
+                                   width=10,
+                                   state="readonly")  # Adicionado state="readonly"
         language_menu['values'] = ['English', 'Português', 'Français', 'Español']
-        language_menu.pack(side=tk.LEFT, padx=5)
+        language_menu.pack(side=tk.TOP, padx=5)  # Changed from BOTTOM to TOP
         language_menu.bind('<<ComboboxSelected>>', self.change_language)
 
         # Cabeçalho
@@ -267,17 +265,17 @@ class InstallerGUI:
         self.progress = ttk.Progressbar(
             main_frame,
             orient="horizontal",
-            length=400,
-            mode="determinate"
+            length=550,
+            mode="determinate",
         )
-        self.progress.pack(pady=20)
+        self.progress.pack(pady=1)
 
         # Botões
         self.install_button = ttk.Button(
             button_frame,
             text=TRANSLATIONS[self.current_language]["install_button"],
             command=self.start_installation,
-            width=20
+            width=30
         )
         self.install_button.pack(side=tk.LEFT, padx=5)
 
@@ -285,7 +283,7 @@ class InstallerGUI:
             button_frame,
             text=TRANSLATIONS[self.current_language]["browse_button"],
             command=self.browse_location,
-            width=20
+            width=30
         )
         self.browse_button.pack(side=tk.LEFT, padx=5)
 
@@ -293,7 +291,7 @@ class InstallerGUI:
             button_frame,
             text=TRANSLATIONS[self.current_language]["restore_button"],
             command=self.restore_backup,
-            width=20
+            width=30
         )
         self.restore_button.pack(side=tk.LEFT, padx=5)
 
@@ -305,11 +303,18 @@ class InstallerGUI:
         self.log_label.pack(anchor=tk.W)
 
         # log font size
-        self.log_text = tk.Text(log_frame, height=8, width=100, font=("Helvetica", 10))
+        self.log_text = tk.Text(log_frame, height=12, width=100, font=("Helvetica", 11))
         self.log_text.pack(pady=5)
+
+        self.log_text.tag_config("green", foreground="green")
+        self.log_text.tag_config("red", foreground="red")
+        self.log_text.tag_config("black", foreground="black")
 
         # Verificação inicial
         self.verify_initial_installation()
+
+        # Verifica o status do backup após a criação do botão de restauração
+        self.check_backup_status()
 
     def change_language(self, _event=None):
         self.current_language = self.language_var.get()
@@ -333,15 +338,21 @@ class InstallerGUI:
 
     def verify_initial_installation(self):
         if os.path.exists(self.hl2_exe_path):
-            self.log(TRANSLATIONS[self.current_language]["game_found_default"])
+            self.log(TRANSLATIONS[self.current_language]["game_found_default"], "green")
             self.install_button.config(state=tk.NORMAL)
         else:
-            self.log(TRANSLATIONS[self.current_language]["game_not_found"])
+            self.log(TRANSLATIONS[self.current_language]["game_not_found"], "red")
             self.install_button.config(state=tk.DISABLED)
 
     # Rest of the methods remain the same...
-    def log(self, message):
-        self.log_text.insert(tk.END, f"{message}\n")
+    def log(self, message, tag="info"):
+        # Habilita a edição temporariamente
+        self.log_text.config(state="normal")
+        # Insere a mensagem no log
+        self.log_text.insert(tk.END, f"{message}\n", tag)
+        # Desabilita a edição novamente
+        self.log_text.config(state="disabled")
+        # Rola para o final do log
         self.log_text.see(tk.END)
 
     def browse_location(self):
@@ -358,10 +369,12 @@ class InstallerGUI:
         if filepath and os.path.basename(filepath) == "hl2.exe":
             self.default_game_path = os.path.dirname(os.path.dirname(filepath))
             self.client_dll_path = os.path.join(self.default_game_path, "fof", "bin", "client.dll")
-            self.log(TRANSLATIONS[self.current_language]["new_location"].format(self.default_game_path))
+            self.log(TRANSLATIONS[self.current_language]["new_location"].format(self.default_game_path), "green")
             self.install_button.config(state=tk.NORMAL)
+            # Verifica o status do backup após a criação do botão de restauração
+            self.check_backup_status()
         else:
-            self.log(TRANSLATIONS[self.current_language]["invalid_selection"])
+            self.log(TRANSLATIONS[self.current_language]["invalid_selection"], "red")
 
     def start_installation(self):
         if is_game_running():
@@ -381,13 +394,13 @@ class InstallerGUI:
                 raise Exception(TRANSLATIONS[self.current_language]["mod_not_found"])
 
             self.progress["value"] = 25
-            self.log(TRANSLATIONS[self.current_language]["mod_verified"])
+            self.log(TRANSLATIONS[self.current_language]["mod_verified"], "black")
 
             if not os.path.exists(self.client_dll_path):
                 raise Exception(TRANSLATIONS[self.current_language]["original_not_found"])
 
             self.progress["value"] = 50
-            self.log(TRANSLATIONS[self.current_language]["original_found"])
+            self.log(TRANSLATIONS[self.current_language]["original_found"], "black")
 
             backup_dir = os.path.dirname(self.client_dll_path)
             self.backup_path = os.path.join(backup_dir, "client.dll.backup")
@@ -402,7 +415,10 @@ class InstallerGUI:
             shutil.copy2(self.mod_dll_path, self.client_dll_path)
 
             self.progress["value"] = 100
-            self.log(TRANSLATIONS[self.current_language]["install_success"])
+            self.log(TRANSLATIONS[self.current_language]["install_success"], "green")
+
+            # Atualiza o estado do botão restore após criar o backup
+            self.check_backup_status()
 
             messagebox.showinfo(
                 TRANSLATIONS[self.current_language]["success_title"],
@@ -440,16 +456,17 @@ class InstallerGUI:
         backup_dir = os.path.dirname(self.client_dll_path)
         backup_path = os.path.join(backup_dir, "client.dll.backup")
 
-        if not os.path.exists(backup_path):
-            messagebox.showinfo(
-                TRANSLATIONS[self.current_language]["error_title"],
-                TRANSLATIONS[self.current_language]["no_backups"]
-            )
-            return
-
         try:
+            # Restaura o arquivo original
             shutil.copy2(backup_path, self.client_dll_path)
-            self.log(TRANSLATIONS[self.current_language]["restore_success"])
+
+            # Remove o arquivo de backup
+            os.remove(backup_path)
+
+            # Atualiza o estado do botão restore
+            self.check_backup_status()
+
+            self.log(TRANSLATIONS[self.current_language]["restore_success"], "green")
             messagebox.showinfo(
                 "",
                 TRANSLATIONS[self.current_language]["restore_success"]
