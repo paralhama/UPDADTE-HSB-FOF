@@ -15,137 +15,177 @@ ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("meu.programa.fof"
 TRANSLATIONS = {
     "Português": {
         "game_running": "Feche o Fistful of Frags antes de continuar",
-        "restore_success": "Arquivo original restaurado com sucesso!",
-        "restore_button": "Restaurar Original",
-        "window_title": "Instalador do Mod - Fistful of Frags",
-        "header": "Instalador do Mod - Fistful of Frags",
-        "install_button": "Instalar Mod",
-        "browse_button": "Selecionar Local",
+        "restore_success": "Atualização removida com sucesso!",
+        "restore_button": "Remover atualização",
+        "window_title": "Atualização - Fistful of Frags",
+        "header": "Atualização da lista de servidores da comunidade (HSB)",
+        "install_button": "Instalar atualização",
+        "browse_button": "Selecionar jogo manualmente",
         "log_title": "Log de instalação:",
-        "game_found_default": "Jogo encontrado no local padrão",
-        "game_not_found": "Jogo não encontrado no local padrão",
+        "game_found_default": "Jogo detectado automaticamente com sucesso.",
+        "game_not_found": "Não foi possível detectar o jogo automaticamente\nClique em |Selecionar jogo manualmente| e siga as instruções.",
         "new_location": "Jogo localizado: {}",
-        "invalid_selection": "Seleção inválida ou cancelada",
-        "mod_not_found": "Arquivo do mod não encontrado",
-        "mod_verified": "Arquivo do mod verificado",
-        "original_not_found": "client.dll original não encontrado",
-        "original_found": "client.dll original encontrado",
-        "backup_created": "Backup criado: {}",
-        "install_success": "Mod instalado com sucesso!",
-        "success_title": "Sucesso",
-        "success_message": "Mod instalado com sucesso!",
-        "error_title": "Erro",
-        "error_message": "Erro durante a instalação:\n{}",
-        "select_folder": "Localize a pasta de instalação do Fistful of Frags.\n1. Navegue até: steamapps\\common\\Fistful of Frags\\sdk.\n2. Selecione o arquivo \"hl2.exe\".",
-        "select_exe": "Selecione o arquivo hl2.exe na pasta: steamapps\\common\\Fistful of Frags\\sdk.",
+        "invalid_selection": "Seleção do jogo inválida ou cancelada. Tente novamente.",
+        "mod_not_found": "O arquivos a ser atualizado não foi encontrado.",
+        "mod_verified": "Atualizando... 0%",
+        "original_not_found": "Atualizando... 25%",
+        "original_found": "Atualizando... 50%",
+        "backup_created": "Atualizando... 99%",
+        "install_success": "Atualizando... 100%",
+        "error_message": "Erro na atualização:\n\n"
+                         "Certifique-se de que selecionou a instalação correta.\n"
+                         "Se estiver correta, os arquivos do jogo podem estar corrompidos.\n\n"
+                         "Para verificar, siga os passos abaixo:\n\n"
+                         "1. Localize 'Fistful of Frags' na sua biblioteca Steam.\n\n"
+                         "2. Clique com o botão direito sobre o jogo e selecione Propriedades.\n\n"
+                         "3. Vá para Arquivos Instalados e clique em Verificar Integridade dos Arquivos.\n\n"
+                         "Aguarde a conclusão e tente atualizar novamente.",
+        "success_title": "concluído.",
+        "success_message": "Atualização concluída com sucesso!",
+        "error_title": "Atenção!",
+        "select_folder": "Localize a pasta de instalação do Fistful of Frags.\n\n1. Navegue até:\nSteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.\n\n2. Selecione o arquivo \"hl2.exe\".",
+        "select_exe": "Selecione o arquivo hl2.exe na pasta: SteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.",
+        "update_already_installed": "A atualização já foi instalada!",
         "language_label": "Idioma",
     },
     "English": {
         "game_running": "Please close Fistful of Frags before continuing",
-        "restore_success": "Original file restored successfully!",
-        "restore_button": "Restore Original",
-        "window_title": "Mod Installer - Fistful of Frags",
-        "header": "Mod Installer - Fistful of Frags",
-        "install_button": "Install Mod",
-        "browse_button": "Browse Location",
+        "restore_success": "Update removed successfully!",
+        "restore_button": "Remove update",
+        "window_title": "Update - Fistful of Frags",
+        "header": "Community Servers list Update (HSB)",
+        "install_button": "Install update",
+        "browse_button": "Select game manually",
         "log_title": "Installation log:",
-        "game_found_default": "Game found in default location",
-        "game_not_found": "Game not found in default location",
-        "new_location": "New game location: {}",
-        "invalid_selection": "Invalid or canceled selection",
-        "mod_not_found": "Mod file not found",
-        "mod_verified": "Mod file verified",
-        "original_not_found": "Original client.dll not found",
-        "original_found": "Original client.dll found",
-        "backup_created": "Backup created: {}",
-        "install_success": "Mod installed successfully!",
-        "success_title": "Success",
-        "success_message": "Mod installed successfully!",
-        "error_title": "Error",
-        "error_message": "Error during installation:\n{}",
-        "select_folder": "Select hl2.exe file",
-        "select_exe": "Selecione o arquivo hl2.exe na pasta: steamapps\\common\\Fistful of Frags\\sdk.",
+        "game_found_default": "Game automatically detected successfully.",
+        "game_not_found": "Game could not be automatically detected\nClick |Select game manually| and follow the instructions.",
+        "new_location": "Game located: {}",
+        "invalid_selection": "Invalid or cancelled game selection. Please try again.",
+        "mod_not_found": "The file to be updated was not found.",
+        "mod_verified": "Updating... 0%",
+        "original_not_found": "Updating... 25%",
+        "original_found": "Updating... 50%",
+        "backup_created": "Updating... 99%",
+        "install_success": "Updating... 100%",
+        "error_message": "Update error:\n\n"
+                         "Make sure you selected the correct installation.\n"
+                         "If correct, the game files may be corrupted.\n\n"
+                         "To verify, follow the steps below:\n\n"
+                         "1. Locate 'Fistful of Frags' in your Steam library.\n\n"
+                         "2. Right-click the game and select Properties.\n\n"
+                         "3. Go to Installed Files and click Verify Integrity of Game Files.\n\n"
+                         "Wait for it to complete and try updating again.",
+        "success_title": "Completed.",
+        "success_message": "Update completed successfully!",
+        "error_title": "Warning!",
+        "select_folder": "Locate the installation folder of Fistful of Frags.\n\n1. Navigate to:\nSteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.\n\n2. Select the file \"hl2.exe\".",
+        "select_exe": "Select the hl2.exe file in the folder: SteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.",
+        "update_already_installed": "The update has already been installed!",
         "language_label": "Language",
     },
     "Français": {
         "game_running": "Veuillez fermer Fistful of Frags avant de continuer",
-        "restore_success": "Fichier original restauré avec succès!",
-        "restore_button": "Restaurer Original",
-        "window_title": "Installateur de Mod - Fistful of Frags",
-        "header": "Installateur de Mod - Fistful of Frags",
-        "install_button": "Installer le Mod",
-        "browse_button": "Parcourir",
-        "log_title": "Journal d'installation:",
-        "game_found_default": "Jeu trouvé dans l'emplacement par défaut",
-        "game_not_found": "Jeu non trouvé dans l'emplacement par défaut",
-        "new_location": "Nouvel emplacement du jeu: {}",
-        "invalid_selection": "Sélection invalide ou annulée",
-        "mod_not_found": "Fichier mod non trouvé",
-        "mod_verified": "Fichier mod vérifié",
-        "original_not_found": "client.dll original non trouvé",
-        "original_found": "client.dll original trouvé",
-        "backup_created": "Sauvegarde créée: {}",
-        "install_success": "Mod installé avec succès!",
-        "success_title": "Succès",
-        "success_message": "Mod installé avec succès!",
-        "error_title": "Erreur",
-        "error_message": "Erreur lors de l'installation:\n{}",
-        "select_folder": "Sélectionnez le fichier hl2.exe",
-        "select_exe": "Selecione o arquivo hl2.exe na pasta: steamapps\\common\\Fistful of Frags\\sdk.",
+        "restore_success": "Mise à jour supprimée avec succès !",
+        "restore_button": "Supprimer la mise à jour",
+        "window_title": "Mise à jour - Fistful of Frags",
+        "header": "Mise à jour de la liste des serveurs communautaires (HSB)",
+        "install_button": "Installer la mise à jour",
+        "browse_button": "Sélectionner le jeu manuellement",
+        "log_title": "Journal d'installation :",
+        "game_found_default": "Jeu détecté automatiquement avec succès.",
+        "game_not_found": "Le jeu n'a pas pu être détecté automatiquement\nCliquez sur |Sélectionner le jeu manuellement| et suivez les instructions.",
+        "new_location": "Jeu localisé : {}",
+        "invalid_selection": "Sélection du jeu invalide ou annulée. Veuillez réessayer.",
+        "mod_not_found": "Le fichier à mettre à jour n'a pas été trouvé.",
+        "mod_verified": "Mise à jour... 0%",
+        "original_not_found": "Mise à jour... 25%",
+        "original_found": "Mise à jour... 50%",
+        "backup_created": "Mise à jour... 99%",
+        "install_success": "Mise à jour... 100%",
+        "error_message": "Erreur de mise à jour :\n\n"
+                         "Assurez-vous que vous avez sélectionné la bonne installation.\n"
+                         "Si elle est correcte, les fichiers du jeu peuvent être corrompus.\n\n"
+                         "Pour vérifier, suivez les étapes ci-dessous :\n\n"
+                         "1. Localisez 'Fistful of Frags' dans votre bibliothèque Steam.\n\n"
+                         "2. Faites un clic droit sur le jeu et sélectionnez Propriétés.\n\n"
+                         "3. Allez dans Fichiers installés et cliquez sur Vérifier l'intégrité des fichiers du jeu.\n\n"
+                         "Attendez la fin et essayez de mettre à jour à nouveau.",
+        "success_title": "Terminé.",
+        "success_message": "Mise à jour terminée avec succès !",
+        "error_title": "Attention !",
+        "select_folder": "Localisez le dossier d'installation de Fistful of Frags.\n\n1. Allez dans :\nSteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.\n\n2. Sélectionnez le fichier \"hl2.exe\".",
+        "select_exe": "Sélectionnez le fichier hl2.exe dans le dossier : SteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.",
+        "update_already_installed": "La mise à jour est déjà installée !",
         "language_label": "Langue",
     },
     "Español": {
         "game_running": "Por favor, cierre Fistful of Frags antes de continuar",
-        "restore_success": "¡Archivo original restaurado con éxito!",
-        "restore_button": "Restaurar Original",
-        "window_title": "Instalador de Mod - Fistful of Frags",
-        "header": "Instalador de Mod - Fistful of Frags",
-        "install_button": "Instalar Mod",
-        "browse_button": "Seleccionar Ubicación",
+        "restore_success": "Actualización eliminada con éxito!",
+        "restore_button": "Eliminar actualización",
+        "window_title": "Actualización - Fistful of Frags",
+        "header": "Actualización de la lista de servidores de la comunidad (HSB)",
+        "install_button": "Instalar actualización",
+        "browse_button": "Seleccionar juego manualmente",
         "log_title": "Registro de instalación:",
-        "game_found_default": "Juego encontrado en la ubicación predeterminada",
-        "game_not_found": "Juego no encontrado en la ubicación predeterminada",
-        "new_location": "Nueva ubicación del juego: {}",
-        "invalid_selection": "Selección inválida o cancelada",
-        "mod_not_found": "Archivo mod no encontrado",
-        "mod_verified": "Archivo mod verificado",
-        "original_not_found": "client.dll original no encontrado",
-        "original_found": "client.dll original encontrado",
-        "backup_created": "Copia de seguridad creada: {}",
-        "install_success": "¡Mod instalado con éxito!",
-        "success_title": "Éxito",
-        "success_message": "¡Mod instalado con éxito!",
-        "error_title": "Error",
-        "error_message": "Error durante la instalación:\n{}",
-        "select_folder": "Seleccione el archivo hl2.exe",
-        "select_exe": "Selecione o arquivo hl2.exe na pasta: steamapps\\common\\Fistful of Frags\\sdk.",
+        "game_found_default": "Juego detectado automáticamente con éxito.",
+        "game_not_found": "No se pudo detectar el juego automáticamente\nHaga clic en |Seleccionar juego manualmente| y siga las instrucciones.",
+        "new_location": "Juego localizado: {}",
+        "invalid_selection": "Selección de juego inválida o cancelada. Intente nuevamente.",
+        "mod_not_found": "No se encontró el archivo a actualizar.",
+        "mod_verified": "Actualizando... 0%",
+        "original_not_found": "Actualizando... 25%",
+        "original_found": "Actualizando... 50%",
+        "backup_created": "Actualizando... 99%",
+        "install_success": "Actualizando... 100%",
+        "error_message": "Error en la actualización:\n\n"
+                         "Asegúrese de haber seleccionado la instalación correcta.\n"
+                         "Si está correcta, los archivos del juego pueden estar corruptos.\n\n"
+                         "Para verificar, siga los siguientes pasos:\n\n"
+                         "1. Localice 'Fistful of Frags' en su biblioteca de Steam.\n\n"
+                         "2. Haga clic derecho sobre el juego y seleccione Propiedades.\n\n"
+                         "3. Vaya a Archivos instalados y haga clic en Verificar la integridad de los archivos del juego.\n\n"
+                         "Espere a que termine y vuelva a intentar la actualización.",
+        "success_title": "Completado.",
+        "success_message": "¡Actualización completada con éxito!",
+        "error_title": "¡Atención!",
+        "select_folder": "Localiza la carpeta de instalación de Fistful of Frags.\n\n1. Navega a:\nSteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.\n\n2. Selecciona el archivo \"hl2.exe\".",
+        "select_exe": "Выберите файл hl2.exe в папке: SteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.",
+        "update_already_installed": "¡La actualización ya ha sido instalada!",
         "language_label": "Idioma",
     },
     "Русский": {
         "game_running": "Пожалуйста, закройте Fistful of Frags перед продолжением",
-        "restore_success": "Оригинальный файл успешно восстановлен!",
-        "restore_button": "Восстановить Оригинал",
-        "window_title": "Установщик Мода - Fistful of Frags",
-        "header": "Установщик Мода - Fistful of Frags",
-        "install_button": "Установить Мод",
-        "browse_button": "Выбрать Местоположение",
+        "restore_success": "Обновление успешно удалено!",
+        "restore_button": "Удалить обновление",
+        "window_title": "Обновление - Fistful of Frags",
+        "header": "Обновление списка серверов сообщества (HSB)",
+        "install_button": "Установить обновление",
+        "browse_button": "Выбрать игру вручную",
         "log_title": "Журнал установки:",
-        "game_found_default": "Игра найдена в стандартном местоположении",
-        "game_not_found": "Игра не найдена в стандартном местоположении",
-        "new_location": "Новое местоположение игры: {}",
-        "invalid_selection": "Неверный или отмененный выбор",
-        "mod_not_found": "Файл мода не найден",
-        "mod_verified": "Файл мода проверен",
-        "original_not_found": "Оригинальный client.dll не найден",
-        "original_found": "Оригинальный client.dll найден",
-        "backup_created": "Резервная копия создана: {}",
-        "install_success": "Мод успешно установлен!",
-        "success_title": "Успех",
-        "success_message": "Мод успешно установлен!",
-        "error_title": "Ошибка",
-        "error_message": "Ошибка во время установки:\n{}",
-        "select_folder": "Выберите файл hl2.exe",
-        "select_exe": "Выберите файл hl2.exe в папке: steamapps\\common\\Fistful of Frags\\sdk.",
+        "game_found_default": "Игра автоматически обнаружена успешно.",
+        "game_not_found": "Не удалось автоматически обнаружить игру\nНажмите |Выбрать игру вручную| и следуйте инструкциям.",
+        "new_location": "Игра найдена: {}",
+        "invalid_selection": "Неверный или отмененный выбор игры. Попробуйте снова.",
+        "mod_not_found": "Файл для обновления не найден.",
+        "mod_verified": "Обновление... 0%",
+        "original_not_found": "Обновление... 25%",
+        "original_found": "Обновление... 50%",
+        "backup_created": "Обновление... 99%",
+        "install_success": "Обновление... 100%",
+        "error_message": "Ошибка обновления:\n\n"
+                         "Убедитесь, что вы выбрали правильную установку.\n"
+                         "Если это так, файлы игры могут быть повреждены.\n\n"
+                         "Чтобы проверить, выполните следующие шаги:\n\n"
+                         "1. Найдите 'Fistful of Frags' в своей библиотеке Steam.\n\n"
+                         "2. Щелкните правой кнопкой мыши на игре и выберите Свойства.\n\n"
+                         "3. Перейдите в Установленные файлы и нажмите Проверить целостность файлов игры.\n\n"
+                         "Подождите завершения и попробуйте обновить снова.",
+        "success_title": "Завершено.",
+        "success_message": "Обновление успешно завершено!",
+        "error_title": "Внимание!",
+        "select_folder": "Найдите папку установки Fistful of Frags.\n\n1. Перейдите в:\nSteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.\n\n2. Выберите файл \"hl2.exe\".",
+        "select_exe": "Выберите файл hl2.exe в папке: SteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.",
+        "update_already_installed": "Обновление уже установлено!",
         "language_label": "Язык",
     }
 }
@@ -214,13 +254,36 @@ class InstallerGUI:
         self.setup_window()
 
         # Configurações do instalador
-        self.default_game_path = r"D:\Program Files (x86)\Steam\steamapps\common\Fistful of Frags"
+        self.default_game_path = r"C:\Program Files (x86)\Steam\steamapps\common\Fistful of Frags"
         self.hl2_exe_path = os.path.join(self.default_game_path, "sdk", "hl2.exe")
         self.client_dll_path = os.path.join(self.default_game_path, "fof", "bin", "client.dll")
         self.mod_dll_path = "mod_client.dll"
 
         self.setup_gui()
         self.check_backup_status()
+
+    def log_with_custom_colors(self, message, default_color="red"):
+        # Divide o texto em partes com base nas aspas simples
+        parts = message.split("|")
+
+        # Habilita a edição do widget de texto
+        self.log_text.config(state=tk.NORMAL)
+
+        # Itera sobre as partes do texto
+        for i, part in enumerate(parts):
+            if i % 2 == 1:  # Partes dentro de aspas simples
+                self.log_text.insert(tk.END, f"'{part}'", "black")  # Aplica a tag "black"
+            else:  # Partes fora das aspas simples
+                self.log_text.insert(tk.END, part, default_color)  # Aplica a cor padrão (vermelho)
+
+        # Adiciona uma quebra de linha no final
+        self.log_text.insert(tk.END, "\n")
+
+        # Desabilita a edição do widget de texto
+        self.log_text.config(state=tk.DISABLED)
+
+        # Rola para o final do texto
+        self.log_text.see(tk.END)
 
     def check_backup_status(self):
         """Verifica se existe backup e atualiza o estado do botão restore"""
@@ -374,7 +437,8 @@ class InstallerGUI:
             self.log(TRANSLATIONS[self.current_language]["game_found_default"], "green")
             self.install_button.config(state=tk.NORMAL)
         else:
-            self.log(TRANSLATIONS[self.current_language]["game_not_found"], "red")
+            message = TRANSLATIONS[self.current_language]["game_not_found"]
+            self.log_with_custom_colors(message, "red")
             self.install_button.config(state=tk.DISABLED)
 
     # Rest of the methods remain the same...
@@ -412,6 +476,14 @@ class InstallerGUI:
     def start_installation(self):
         if is_game_running():
             messagebox.showwarning("Warning", TRANSLATIONS[self.current_language]["game_running"])
+            return
+
+        # Verifica se já existe um backup
+        backup_dir = os.path.dirname(self.client_dll_path)
+        backup_path = os.path.join(backup_dir, "client.dll.backup")
+
+        if os.path.exists(backup_path):
+            messagebox.showinfo("", TRANSLATIONS[self.current_language]["update_already_installed"])
             return
 
         self.install_button.config(state=tk.DISABLED)
