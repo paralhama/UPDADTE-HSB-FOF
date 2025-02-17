@@ -9,7 +9,7 @@ import locale
 import ctypes
 
 # Define um ID único para o programa, evitando o ícone genérico do Python
-ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("meu.programa.fof")
+ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("update.servers.HSB.fof")
 
 # Dicionário de traduções
 TRANSLATIONS = {
