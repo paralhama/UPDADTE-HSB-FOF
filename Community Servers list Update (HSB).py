@@ -22,12 +22,12 @@ TRANSLATIONS = {
         "install_button": "Instalar atualização",
         "browse_button": "Selecionar jogo manualmente",
         "log_title": "Log de instalação:",
-        "game_found_default": "Jogo detectado automaticamente com sucesso.",
+        "game_found_default": "Jogo detectado automaticamente com sucesso.\nClique em |Instalar atualização|",
         "game_not_found": "Não foi possível detectar o jogo automaticamente\nClique em |Selecionar jogo manualmente| e siga as instruções.",
         "new_location": "Jogo localizado: {}",
         "invalid_selection": "Seleção do jogo inválida ou cancelada. Tente novamente.",
-        "mod_not_found": "O arquivos a ser atualizado não foi encontrado.",
-        "mod_verified": "Atualizando... 0%",
+        "file_not_found": "O arquivos a ser atualizado não foi encontrado.",
+        "update_verified": "Atualizando... 0%",
         "original_not_found": "Atualizando... 25%",
         "original_found": "Atualizando... 50%",
         "backup_created": "Atualizando... 99%",
@@ -61,8 +61,8 @@ TRANSLATIONS = {
         "game_not_found": "Game could not be automatically detected\nClick |Select game manually| and follow the instructions.",
         "new_location": "Game located: {}",
         "invalid_selection": "Invalid or cancelled game selection. Please try again.",
-        "mod_not_found": "The file to be updated was not found.",
-        "mod_verified": "Updating... 0%",
+        "file_not_found": "The file to be updated was not found.",
+        "update_verified": "Updating... 0%",
         "original_not_found": "Updating... 25%",
         "original_found": "Updating... 50%",
         "backup_created": "Updating... 99%",
@@ -96,8 +96,8 @@ TRANSLATIONS = {
         "game_not_found": "Le jeu n'a pas pu être détecté automatiquement\nCliquez sur |Sélectionner le jeu manuellement| et suivez les instructions.",
         "new_location": "Jeu localisé : {}",
         "invalid_selection": "Sélection du jeu invalide ou annulée. Veuillez réessayer.",
-        "mod_not_found": "Le fichier à mettre à jour n'a pas été trouvé.",
-        "mod_verified": "Mise à jour... 0%",
+        "file_not_found": "Le fichier à mettre à jour n'a pas été trouvé.",
+        "update_verified": "Mise à jour... 0%",
         "original_not_found": "Mise à jour... 25%",
         "original_found": "Mise à jour... 50%",
         "backup_created": "Mise à jour... 99%",
@@ -131,8 +131,8 @@ TRANSLATIONS = {
         "game_not_found": "No se pudo detectar el juego automáticamente\nHaga clic en |Seleccionar juego manualmente| y siga las instrucciones.",
         "new_location": "Juego localizado: {}",
         "invalid_selection": "Selección de juego inválida o cancelada. Intente nuevamente.",
-        "mod_not_found": "No se encontró el archivo a actualizar.",
-        "mod_verified": "Actualizando... 0%",
+        "file_not_found": "No se encontró el archivo a actualizar.",
+        "update_verified": "Actualizando... 0%",
         "original_not_found": "Actualizando... 25%",
         "original_found": "Actualizando... 50%",
         "backup_created": "Actualizando... 99%",
@@ -166,8 +166,8 @@ TRANSLATIONS = {
         "game_not_found": "Не удалось автоматически обнаружить игру\nНажмите |Выбрать игру вручную| и следуйте инструкциям.",
         "new_location": "Игра найдена: {}",
         "invalid_selection": "Неверный или отмененный выбор игры. Попробуйте снова.",
-        "mod_not_found": "Файл для обновления не найден.",
-        "mod_verified": "Обновление... 0%",
+        "file_not_found": "Файл для обновления не найден.",
+        "update_verified": "Обновление... 0%",
         "original_not_found": "Обновление... 25%",
         "original_found": "Обновление... 50%",
         "backup_created": "Обновление... 99%",
@@ -433,8 +433,17 @@ class InstallerGUI:
         self.verify_initial_installation()
 
     def verify_initial_installation(self):
-        if os.path.exists(self.hl2_exe_path):
-            self.log(TRANSLATIONS[self.current_language]["game_found_default"], "green")
+        # Verifica se já existe um backup
+        backup_dir = os.path.dirname(self.client_dll_path)
+        backup_path = os.path.join(backup_dir, "client.dll.backup")
+
+        if os.path.exists(backup_path):
+            self.log(TRANSLATIONS[self.current_language]["update_already_installed"], "green")
+            messagebox.showinfo("", TRANSLATIONS[self.current_language]["update_already_installed"])
+            return
+        elif os.path.exists(self.hl2_exe_path):
+            message = TRANSLATIONS[self.current_language]["game_found_default"]
+            self.log_with_custom_colors(message, "green")
             self.install_button.config(state=tk.NORMAL)
         else:
             message = TRANSLATIONS[self.current_language]["game_not_found"]
@@ -455,6 +464,14 @@ class InstallerGUI:
     def browse_location(self):
         if is_game_running():
             messagebox.showwarning("", TRANSLATIONS[self.current_language]["game_running"])
+            return
+
+        # Verifica se já existe um backup
+        backup_dir = os.path.dirname(self.client_dll_path)
+        backup_path = os.path.join(backup_dir, "client.dll.backup")
+
+        if os.path.exists(backup_path):
+            messagebox.showinfo("", TRANSLATIONS[self.current_language]["update_already_installed"])
             return
 
         messagebox.showinfo("", TRANSLATIONS[self.current_language]["select_folder"])
@@ -496,10 +513,10 @@ class InstallerGUI:
             self.progress["value"] = 0
 
             if not os.path.exists(self.mod_dll_path):
-                raise Exception(TRANSLATIONS[self.current_language]["mod_not_found"])
+                raise Exception(TRANSLATIONS[self.current_language]["file_not_found"])
 
             self.progress["value"] = 25
-            self.log(TRANSLATIONS[self.current_language]["mod_verified"], "black")
+            self.log(TRANSLATIONS[self.current_language]["update_verified"], "black")
 
             if not os.path.exists(self.client_dll_path):
                 raise Exception(TRANSLATIONS[self.current_language]["original_not_found"])
