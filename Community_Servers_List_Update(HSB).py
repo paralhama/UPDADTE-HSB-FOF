@@ -510,6 +510,7 @@ class InstallerGUI:
             self.install_button.config(state=tk.NORMAL)
             # Verifica o status do backup após a criação do botão de restauração
             self.check_backup_status()
+            self.verify_initial_installation()
         else:
             self.log(TRANSLATIONS[self.current_language]["invalid_selection"], "red")
 
