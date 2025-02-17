@@ -432,7 +432,7 @@ class InstallerGUI:
         # Habilita a edição do log
         self.log_text.config(state="normal")
 
-        # Deleta todo o conteúdo (do início 1.0 até o final 'end')
+        # Deleta o conteúdo log (do início 1.0 até o final 'end')
         self.log_text.delete(1.0, tk.END)
 
         # Desabilita a edição do log novamente
