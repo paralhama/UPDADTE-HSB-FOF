@@ -1,4 +1,5 @@
 import os
+import sys
 import shutil
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
@@ -149,7 +150,7 @@ TRANSLATIONS = {
         "success_message": "¡Actualización completada con éxito!",
         "error_title": "¡Atención!",
         "select_folder": "Localiza la carpeta de instalación de Fistful of Frags.\n\n1. Navega a:\nSteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.\n\n2. Selecciona el archivo \"hl2.exe\".",
-        "select_exe": "Выберите файл hl2.exe в папке: SteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.",
+        "select_exe": "Selecciona el archivo hl2.exe en la carpeta: SteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.",
         "update_already_installed": "¡La actualización ya ha sido instalada!",
         "language_label": "Idioma",
     },
@@ -203,12 +204,8 @@ LANGUAGE_MAPPING = {
 
 
 def resource_path(relative_path):
-    """ Get absolute path to resource, works for dev and for PyInstaller """
-    try:
-        # PyInstaller creates a temp folder and stores path in _MEIPASS
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
+    """Obtém o caminho absoluto do recurso, funciona tanto no desenvolvimento quanto no PyInstaller."""
+    base_path = getattr(sys, '_MEIPASS', os.path.abspath("."))  # Usa getattr para evitar erro de acesso
 
     return os.path.join(base_path, relative_path)
 
@@ -232,8 +229,10 @@ def get_system_language():
             base_locale = system_locale.split('_')[0]
             if base_locale in LANGUAGE_MAPPING:
                 return LANGUAGE_MAPPING[base_locale]
-    except:
+    except (locale.Error, AttributeError, IndexError):
+        # Captura erros específicos do locale ou problemas com índices nulos
         pass
+
     return 'English'  # Idioma padrão caso não encontre correspondência
 
 
@@ -306,16 +305,7 @@ class InstallerGUI:
         else:
             self.restore_button.config(state=tk.DISABLED)
 
-    def verify_initial_installation(self):
-        if os.path.exists(self.hl2_exe_path):
-            self.log(TRANSLATIONS[self.current_language]["game_found_default"])
-            self.install_button.config(state=tk.NORMAL)
-        else:
-            self.log(TRANSLATIONS[self.current_language]["game_not_found"])
-            self.install_button.config(state=tk.DISABLED)
-
-        # Verifica o status do backup após verificar a instalação
-        self.check_backup_status()
+    import tkinter as tk  # Certifique-se de importar tkinter para evitar erros
 
     def setup_window(self):
         screen_width = self.root.winfo_screenwidth()
@@ -327,12 +317,12 @@ class InstallerGUI:
         self.root.geometry(f"{window_width}x{window_height}+{position_x}+{position_y}")
         self.root.title(TRANSLATIONS[self.current_language]["window_title"])
         self.root.resizable(False, False)
+
         try:
             icon_path = resource_path("fof.ico")
             self.root.iconbitmap(icon_path)
-        except:
-            pass  # Silently fail if icon cannot be loaded
-
+        except tk.TclError:
+            print("Aviso: Ícone não pôde ser carregado.")  # Mensagem para depuração opcional
 
     def setup_gui(self):
         style = ttk.Style()
@@ -353,9 +343,9 @@ class InstallerGUI:
 
         self.language_var = tk.StringVar(value=self.current_language)
         language_menu = ttk.Combobox(lang_frame,
-                                   textvariable=self.language_var,
-                                   width=10,
-                                   state="readonly")  # Adicionado state="readonly"
+                                     textvariable=self.language_var,
+                                     width=10,
+                                     state="readonly")  # Adicionado state="readonly"
         language_menu['values'] = ['English', 'Português', 'Français', 'Español', 'Русский']
         language_menu.pack(side=tk.TOP, padx=5)  # Changed from BOTTOM to TOP
         language_menu.bind('<<ComboboxSelected>>', self.change_language)
@@ -424,7 +414,7 @@ class InstallerGUI:
         # Verificação inicial
         self.verify_initial_installation()
 
-        # Verifica o status do backup após a criação do botão de restauração
+        # Verifica o Situação do backup após a criação do botão de restauração
         self.check_backup_status()
 
     def change_language(self, _event=None):
@@ -456,7 +446,11 @@ class InstallerGUI:
         self.verify_initial_installation()
 
     def verify_initial_installation(self):
-        # Verifica se já existe um backup
+        """
+        Verifica se o jogo está instalado e se a atualização já foi aplicada.
+        """
+
+        # Verifica se já existe um backup (indica que a atualização já foi instalada)
         backup_dir = os.path.dirname(self.client_dll_path)
         backup_path = os.path.join(backup_dir, "client.dll.backup")
 
@@ -464,7 +458,9 @@ class InstallerGUI:
             self.log(TRANSLATIONS[self.current_language]["update_already_installed"], "green")
             messagebox.showinfo("", TRANSLATIONS[self.current_language]["update_already_installed"])
             return
-        elif os.path.exists(self.hl2_exe_path):
+
+        # Verifica se o jogo está instalado
+        if os.path.exists(self.hl2_exe_path):
             message = TRANSLATIONS[self.current_language]["game_found_default"]
             self.log_with_custom_colors(message, "green")
             self.install_button.config(state=tk.NORMAL)
@@ -472,6 +468,9 @@ class InstallerGUI:
             message = TRANSLATIONS[self.current_language]["game_not_found"]
             self.log_with_custom_colors(message, "red")
             self.install_button.config(state=tk.DISABLED)
+
+        # Verifica o Situação do backup após a verificação inicial
+        self.check_backup_status()
 
     # Rest of the methods remain the same...
     def log(self, message, tag="info"):
@@ -506,9 +505,10 @@ class InstallerGUI:
         if filepath and os.path.basename(filepath) == "hl2.exe":
             self.default_game_path = os.path.dirname(os.path.dirname(filepath))
             self.client_dll_path = os.path.join(self.default_game_path, "fof", "bin", "client.dll")
-            self.log_with_custom_colors(TRANSLATIONS[self.current_language]["new_location"].format(self.default_game_path), "green")
+            self.log_with_custom_colors(
+                TRANSLATIONS[self.current_language]["new_location"].format(self.default_game_path), "green")
             self.install_button.config(state=tk.NORMAL)
-            # Verifica o status do backup após a criação do botão de restauração
+            # Verifica o Situação do backup após a criação do botão de restauração
             self.check_backup_status()
             self.verify_initial_installation()
         else:
