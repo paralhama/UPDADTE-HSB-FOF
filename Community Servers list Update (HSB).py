@@ -202,6 +202,17 @@ LANGUAGE_MAPPING = {
 }
 
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
 def get_system_language():
     """
     Detecta o idioma do sistema e retorna o idioma correspondente suportado pelo aplicativo.
@@ -316,7 +327,11 @@ class InstallerGUI:
         self.root.geometry(f"{window_width}x{window_height}+{position_x}+{position_y}")
         self.root.title(TRANSLATIONS[self.current_language]["window_title"])
         self.root.resizable(False, False)
-        self.root.iconbitmap("fof.ico")
+        try:
+            icon_path = resource_path("fof.ico")
+            self.root.iconbitmap(icon_path)
+        except:
+            pass  # Silently fail if icon cannot be loaded
 
 
     def setup_gui(self):
