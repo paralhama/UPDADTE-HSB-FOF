@@ -24,7 +24,7 @@ TRANSLATIONS = {
         "log_title": "Log de instalação:",
         "game_found_default": "Jogo detectado automaticamente com sucesso.\nClique em |Instalar atualização|",
         "game_not_found": "Não foi possível detectar o jogo automaticamente\nClique em |Selecionar jogo manualmente| e siga as instruções.",
-        "new_location": "Jogo localizado: {}",
+        "new_location": "Jogo localizado: |{}|",
         "invalid_selection": "Seleção do jogo inválida ou cancelada. Tente novamente.",
         "file_not_found": "O arquivos a ser atualizado não foi encontrado.",
         "update_verified": "Atualizando... 0%",
@@ -59,7 +59,7 @@ TRANSLATIONS = {
         "log_title": "Installation log:",
         "game_found_default": "Game automatically detected successfully.",
         "game_not_found": "Game could not be automatically detected\nClick |Select game manually| and follow the instructions.",
-        "new_location": "Game located: {}",
+        "new_location": "Game located: |{}|",
         "invalid_selection": "Invalid or cancelled game selection. Please try again.",
         "file_not_found": "The file to be updated was not found.",
         "update_verified": "Updating... 0%",
@@ -94,7 +94,7 @@ TRANSLATIONS = {
         "log_title": "Journal d'installation :",
         "game_found_default": "Jeu détecté automatiquement avec succès.",
         "game_not_found": "Le jeu n'a pas pu être détecté automatiquement\nCliquez sur |Sélectionner le jeu manuellement| et suivez les instructions.",
-        "new_location": "Jeu localisé : {}",
+        "new_location": "Jeu localisé : |{}|",
         "invalid_selection": "Sélection du jeu invalide ou annulée. Veuillez réessayer.",
         "file_not_found": "Le fichier à mettre à jour n'a pas été trouvé.",
         "update_verified": "Mise à jour... 0%",
@@ -129,7 +129,7 @@ TRANSLATIONS = {
         "log_title": "Registro de instalación:",
         "game_found_default": "Juego detectado automáticamente con éxito.",
         "game_not_found": "No se pudo detectar el juego automáticamente\nHaga clic en |Seleccionar juego manualmente| y siga las instrucciones.",
-        "new_location": "Juego localizado: {}",
+        "new_location": "Juego localizado: |{}|",
         "invalid_selection": "Selección de juego inválida o cancelada. Intente nuevamente.",
         "file_not_found": "No se encontró el archivo a actualizar.",
         "update_verified": "Actualizando... 0%",
@@ -164,7 +164,7 @@ TRANSLATIONS = {
         "log_title": "Журнал установки:",
         "game_found_default": "Игра автоматически обнаружена успешно.",
         "game_not_found": "Не удалось автоматически обнаружить игру\nНажмите |Выбрать игру вручную| и следуйте инструкциям.",
-        "new_location": "Игра найдена: {}",
+        "new_location": "Игра найдена: |{}|",
         "invalid_selection": "Неверный или отмененный выбор игры. Попробуйте снова.",
         "file_not_found": "Файл для обновления не найден.",
         "update_verified": "Обновление... 0%",
@@ -429,6 +429,14 @@ class InstallerGUI:
 
     def change_language(self, _event=None):
         self.current_language = self.language_var.get()
+        # Habilita a edição do log
+        self.log_text.config(state="normal")
+
+        # Deleta todo o conteúdo (do início 1.0 até o final 'end')
+        self.log_text.delete(1.0, tk.END)
+
+        # Desabilita a edição do log novamente
+        self.log_text.config(state="disabled")
         self.update_texts()
 
     def update_texts(self):
@@ -498,7 +506,7 @@ class InstallerGUI:
         if filepath and os.path.basename(filepath) == "hl2.exe":
             self.default_game_path = os.path.dirname(os.path.dirname(filepath))
             self.client_dll_path = os.path.join(self.default_game_path, "fof", "bin", "client.dll")
-            self.log(TRANSLATIONS[self.current_language]["new_location"].format(self.default_game_path), "green")
+            self.log_with_custom_colors(TRANSLATIONS[self.current_language]["new_location"].format(self.default_game_path), "green")
             self.install_button.config(state=tk.NORMAL)
             # Verifica o status do backup após a criação do botão de restauração
             self.check_backup_status()
