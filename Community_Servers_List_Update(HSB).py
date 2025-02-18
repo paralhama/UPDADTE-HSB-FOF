@@ -1,3 +1,4 @@
+import sys
 import os
 import shutil
 import tkinter as tk
@@ -7,6 +8,8 @@ import threading
 import psutil
 import locale
 import ctypes
+import requests
+import tempfile
 
 # Define um ID único para o programa, evitando o ícone genérico do Python
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("update.servers.HSB.fof")
@@ -14,9 +17,9 @@ ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("update.servers.HS
 # Dicionário de traduções
 TRANSLATIONS = {
     "Português": {
-        "game_running": "Feche o Fistful of Frags antes de continuar",
-        "restore_success": "Atualização removida com sucesso!",
-        "restore_button": "Remover atualização",
+        "game_running": "Feche o Fistful of Frags antes de prosseguir",
+        "restore_success": "Atualização desinstalada com sucesso!",
+        "restore_button": "Desinstalar atualização",
         "window_title": "Atualização - Fistful of Frags",
         "header": "Atualização da lista de servidores da comunidade (HSB)",
         "install_button": "Instalar atualização",
@@ -27,10 +30,11 @@ TRANSLATIONS = {
         "new_location": "Jogo localizado: |{}|",
         "invalid_selection": "Seleção do jogo inválida ou cancelada. Tente novamente.",
         "file_not_found": "O arquivos a ser atualizado não foi encontrado.",
-        "update_verified": "Atualizando... 0%",
+        "update_verified": "Atualizando... 5%",
+        "start_update": "Atualizando... 25%",
         "original_not_found": "Atualizando... 25%",
         "original_found": "Atualizando... 50%",
-        "backup_created": "Atualizando... 99%",
+        "backup_created": "Atualizando... 75%",
         "install_success": "Atualizando... 100%",
         "error_message": "Erro na atualização:\n\n"
                          "Certifique-se de que selecionou a instalação correta.\n"
@@ -47,11 +51,12 @@ TRANSLATIONS = {
         "select_exe": "Selecione o arquivo hl2.exe na pasta: SteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.",
         "update_already_installed": "A atualização já foi instalada!",
         "language_label": "Idioma",
+        "no_internet": "Sem conexão com a internet.\nVerifique sua rede e tente novamente.",
     },
     "English": {
-        "game_running": "Please close Fistful of Frags before continuing",
-        "restore_success": "Update removed successfully!",
-        "restore_button": "Remove update",
+        "game_running": "Close Fistful of Frags before proceeding",
+        "restore_success": "Update uninstalled successfully!",
+        "restore_button": "Uninstall update",
         "window_title": "Update - Fistful of Frags",
         "header": "Community Servers list Update (HSB)",
         "install_button": "Install update",
@@ -62,10 +67,11 @@ TRANSLATIONS = {
         "new_location": "Game located: |{}|",
         "invalid_selection": "Invalid or cancelled game selection. Please try again.",
         "file_not_found": "The file to be updated was not found.",
-        "update_verified": "Updating... 0%",
+        "update_verified": "Updating... 5%",
+        "start_update": "Updating... 25%",
         "original_not_found": "Updating... 25%",
         "original_found": "Updating... 50%",
-        "backup_created": "Updating... 99%",
+        "backup_created": "Updating... 75%",
         "install_success": "Updating... 100%",
         "error_message": "Update error:\n\n"
                          "Make sure you selected the correct installation.\n"
@@ -82,11 +88,12 @@ TRANSLATIONS = {
         "select_exe": "Select the hl2.exe file in the folder: SteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.",
         "update_already_installed": "The update has already been installed!",
         "language_label": "Language",
+        "no_internet": "No internet connection.\nCheck your network and try again.",
     },
     "Français": {
-        "game_running": "Veuillez fermer Fistful of Frags avant de continuer",
-        "restore_success": "Mise à jour supprimée avec succès !",
-        "restore_button": "Supprimer la mise à jour",
+        "game_running": "Fermez Fistful of Frags avant de continuer",
+        "restore_success": "Mise à jour désinstallée avec succès !",
+        "restore_button": "Désinstaller la mise à jour",
         "window_title": "Mise à jour - Fistful of Frags",
         "header": "Mise à jour de la liste des serveurs communautaires (HSB)",
         "install_button": "Installer la mise à jour",
@@ -97,10 +104,11 @@ TRANSLATIONS = {
         "new_location": "Jeu localisé : |{}|",
         "invalid_selection": "Sélection du jeu invalide ou annulée. Veuillez réessayer.",
         "file_not_found": "Le fichier à mettre à jour n'a pas été trouvé.",
-        "update_verified": "Mise à jour... 0%",
+        "update_verified": "Mise à jour... 5%",
+        "start_update": "Mise à jour... 25%",
         "original_not_found": "Mise à jour... 25%",
         "original_found": "Mise à jour... 50%",
-        "backup_created": "Mise à jour... 99%",
+        "backup_created": "Mise à jour... 75%",
         "install_success": "Mise à jour... 100%",
         "error_message": "Erreur de mise à jour :\n\n"
                          "Assurez-vous que vous avez sélectionné la bonne installation.\n"
@@ -117,11 +125,12 @@ TRANSLATIONS = {
         "select_exe": "Sélectionnez le fichier hl2.exe dans le dossier : SteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.",
         "update_already_installed": "La mise à jour est déjà installée !",
         "language_label": "Langue",
+        "no_internet": "Pas de connexion Internet.\nVérifiez votre réseau et réessayez.",
     },
     "Español": {
-        "game_running": "Por favor, cierre Fistful of Frags antes de continuar",
-        "restore_success": "Actualización eliminada con éxito!",
-        "restore_button": "Eliminar actualización",
+        "game_running": "Cierra Fistful of Frags antes de continuar",
+        "restore_success": "¡Actualización desinstalada con éxito!",
+        "restore_button": "Desinstalar actualización",
         "window_title": "Actualización - Fistful of Frags",
         "header": "Actualización de la lista de servidores de la comunidad (HSB)",
         "install_button": "Instalar actualización",
@@ -132,10 +141,11 @@ TRANSLATIONS = {
         "new_location": "Juego localizado: |{}|",
         "invalid_selection": "Selección de juego inválida o cancelada. Intente nuevamente.",
         "file_not_found": "No se encontró el archivo a actualizar.",
-        "update_verified": "Actualizando... 0%",
+        "update_verified": "Actualizando... 5%",
+        "start_update": "Actualizando... 25%",
         "original_not_found": "Actualizando... 25%",
         "original_found": "Actualizando... 50%",
-        "backup_created": "Actualizando... 99%",
+        "backup_created": "Actualizando... 75%",
         "install_success": "Actualizando... 100%",
         "error_message": "Error en la actualización:\n\n"
                          "Asegúrese de haber seleccionado la instalación correcta.\n"
@@ -152,9 +162,10 @@ TRANSLATIONS = {
         "select_exe": "Выберите файл hl2.exe в папке: SteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.",
         "update_already_installed": "¡La actualización ya ha sido instalada!",
         "language_label": "Idioma",
+        "no_internet": "Sin conexión a Internet.\nVerifique su red e intente nuevamente.",
     },
     "Русский": {
-        "game_running": "Пожалуйста, закройте Fistful of Frags перед продолжением",
+        "game_running": "Закройте Fistful of Frags перед продолжением",
         "restore_success": "Обновление успешно удалено!",
         "restore_button": "Удалить обновление",
         "window_title": "Обновление - Fistful of Frags",
@@ -167,10 +178,11 @@ TRANSLATIONS = {
         "new_location": "Игра найдена: |{}|",
         "invalid_selection": "Неверный или отмененный выбор игры. Попробуйте снова.",
         "file_not_found": "Файл для обновления не найден.",
-        "update_verified": "Обновление... 0%",
+        "update_verified": "Обновление... 5%",
+        "start_update": "Обновление... 25%",
         "original_not_found": "Обновление... 25%",
         "original_found": "Обновление... 50%",
-        "backup_created": "Обновление... 99%",
+        "backup_created": "Обновление... 75%",
         "install_success": "Обновление... 100%",
         "error_message": "Ошибка обновления:\n\n"
                          "Убедитесь, что вы выбрали правильную установку.\n"
@@ -187,6 +199,7 @@ TRANSLATIONS = {
         "select_exe": "Выберите файл hl2.exe в папке: SteamLibrary\\steamapps\\common\\Fistful of Frags\\sdk.",
         "update_already_installed": "Обновление уже установлено!",
         "language_label": "Язык",
+        "no_internet": "Нет подключения к интернету.\nПроверьте вашу сеть и попробуйте снова.",
     }
 }
 
@@ -260,6 +273,7 @@ class InstallerGUI:
         self.progress = None
         self.header_label = None
         self.language_var = None
+        self.temp_dir = None
         self.root = tk.Tk()
         self.current_language = get_system_language()
         self.setup_window()
@@ -272,6 +286,34 @@ class InstallerGUI:
 
         self.setup_gui()
         self.check_backup_status()
+
+    def check_internet_connection(self):
+        """Verifica se há conexão com a internet."""
+        try:
+            # Tenta acessar um site confiável (como o Google)
+            response = requests.get("https://www.google.com", timeout=5)
+            return response.status_code == 200  # Retorna True se a conexão for bem-sucedida
+        except requests.RequestException:
+            return False  # Retorna False se não houver conexão
+
+    def download_mod_dll(self):
+        """Baixa o mod_client.dll do GitHub em um diretório temporário."""
+        url = "https://github.com/paralhama/UPDADTE-HSB-FOF/raw/refs/heads/master/mod_client.dll"
+        try:
+            # Cria um diretório temporário
+            self.temp_dir = tempfile.mkdtemp()
+            temp_dll_path = os.path.join(self.temp_dir, "mod_client.dll")
+
+            response = requests.get(url, stream=True)
+            response.raise_for_status()
+
+            with open(temp_dll_path, "wb") as file:
+                for chunk in response.iter_content(chunk_size=8192):
+                    file.write(chunk)
+            return True
+        except requests.RequestException as e:
+            self.log(TRANSLATIONS[self.current_language]["no_internet"], "red")
+            return False
 
     def log_with_custom_colors(self, message, default_color="red"):
         # Divide o texto em partes com base nas aspas simples
@@ -485,6 +527,11 @@ class InstallerGUI:
         self.log_text.see(tk.END)
 
     def browse_location(self):
+        # Verifica a conexão com a internet antes de iniciar o download
+        if not self.check_internet_connection():
+            messagebox.showwarning("", TRANSLATIONS[self.current_language]["no_internet"])
+            return
+
         if is_game_running():
             messagebox.showwarning("", TRANSLATIONS[self.current_language]["game_running"])
             return
@@ -510,7 +557,6 @@ class InstallerGUI:
             self.install_button.config(state=tk.NORMAL)
             # Verifica o status do backup após a criação do botão de restauração
             self.check_backup_status()
-            self.verify_initial_installation()
         else:
             self.log(TRANSLATIONS[self.current_language]["invalid_selection"], "red")
 
@@ -527,8 +573,16 @@ class InstallerGUI:
             messagebox.showinfo("", TRANSLATIONS[self.current_language]["update_already_installed"])
             return
 
+        # Verifica a conexão com a internet
+        if not self.check_internet_connection():
+            messagebox.showwarning("", TRANSLATIONS[self.current_language]["no_internet"])
+            return
+
+        # Desabilita os botões durante o processo
         self.install_button.config(state=tk.DISABLED)
         self.browse_button.config(state=tk.DISABLED)
+
+        # Inicia o processo em uma thread separada
         thread = threading.Thread(target=self.install_mod)
         thread.start()
 
@@ -536,11 +590,24 @@ class InstallerGUI:
         try:
             self.progress["value"] = 0
 
-            if not os.path.exists(self.mod_dll_path):
-                raise Exception(TRANSLATIONS[self.current_language]["file_not_found"])
+            # Verifica a conexão com a internet antes de iniciar o download
+            if not self.check_internet_connection():
+                self.log(TRANSLATIONS[self.current_language]["no_internet"], "red")
+                return False
+
+            # Baixa o mod_client.dll do GitHub
+            self.log(TRANSLATIONS[self.current_language]["update_verified"], "black")
+            self.progress["value"] = 5
+            if not self.download_mod_dll():
+                return
+
+            # Verifica a conexão novamente após o download
+            if not self.check_internet_connection():
+                self.log(TRANSLATIONS[self.current_language]["no_internet"], "red")
+                return False
 
             self.progress["value"] = 25
-            self.log(TRANSLATIONS[self.current_language]["update_verified"], "black")
+            self.log(TRANSLATIONS[self.current_language]["start_update"], "black")
 
             if not os.path.exists(self.client_dll_path):
                 raise Exception(TRANSLATIONS[self.current_language]["original_not_found"])
@@ -558,7 +625,9 @@ class InstallerGUI:
             self.progress["value"] = 75
             self.log(TRANSLATIONS[self.current_language]["backup_created"].format("client.dll.backup"))
 
-            shutil.copy2(self.mod_dll_path, self.client_dll_path)
+            # Usa o arquivo do diretório temporário
+            temp_dll_path = os.path.join(self.temp_dir, "mod_client.dll")
+            shutil.copy2(temp_dll_path, self.client_dll_path)
 
             self.progress["value"] = 100
             self.log(TRANSLATIONS[self.current_language]["install_success"], "green")
@@ -572,13 +641,26 @@ class InstallerGUI:
             )
 
         except Exception as e:
-            self.log(f"{str(e)}")
+            self.log(f"{str(e)}", "red")
+            # Restaura o backup em caso de erro
+            if os.path.exists(self.backup_path):
+                shutil.copy2(self.backup_path, self.client_dll_path)
+                os.remove(self.backup_path)
+                self.check_backup_status()
+
             messagebox.showerror(
                 TRANSLATIONS[self.current_language]["error_title"],
                 TRANSLATIONS[self.current_language]["error_message"].format(str(e))
             )
 
         finally:
+            # Limpa os arquivos temporários
+            if self.temp_dir and os.path.exists(self.temp_dir):
+                try:
+                    shutil.rmtree(self.temp_dir)
+                except:
+                    pass
+
             self.install_button.config(state=tk.NORMAL)
             self.browse_button.config(state=tk.NORMAL)
 
@@ -620,10 +702,7 @@ class InstallerGUI:
             self.progress["value"] = 0
 
         except Exception as e:
-            messagebox.showerror(
-                TRANSLATIONS[self.current_language]["error_title"],
-                TRANSLATIONS[self.current_language]["error_message"].format(str(e))
-            )
+            pass
 
     def run(self):
         self.root.mainloop()
